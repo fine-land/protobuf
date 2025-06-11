@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+package contact2;
+
+message Address {
+    string home_addr = 1;
+    string unit_addr = 2;
+}
+
+message PeopleInfo {
+    string name = 1;
+    int32 age = 2;
+
+    message Phone{
+        string number = 1;
+
+        enum PhoneType {
+            MP = 0;
+            TLP = 1;
+        }
+        PhoneType type = 2;
+    }
+repeated Phone phone_numbers = 3;
+google.protobuf.Any data = 4;
+
+
+// oneof :1)不能使用repeated修饰； 2）与message里面的是同级，注意这里的=5，=6
+oneof other_contact{
+    string qq = 5;
+    string wc = 6;  
+}
+}
+
+message Contact {
+    repeated PeopleInfo contacts = 1;
+}
