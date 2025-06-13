@@ -31,8 +31,52 @@ oneof other_contact{
     string qq = 5;
     string wc = 6;  
 }
+
+    //key:标量 value:任意类型
+    //map不能使用repeated修饰
+    map<string, string> remark = 7;
 }
 
 message Contact {
     repeated PeopleInfo contacts = 1;
 }
+
+
+//标量数据类型，proto3语法下，没有has方法去检验是否设置值；
+//message，oneof，any字段，有has方法，默认值取决于具体语言；
+
+//更新消息：
+/*
+新增：
+    不要和老字段冲突即可；
+
+修改：
+    禁止修改字段编号；
+    int32, int64, uint32, uint64, bool 兼容，若解析出来的不匹配，则会按照C++的处理方式；(截断或者提升)
+    sint32, sint64兼容但不与其他整形兼容
+    string, byte 在合法的UTF-8下兼容
+
+
+删除：
+    如果要删除老的字段，要保证不使用已经被删除或者注释掉的字段；使用reserved，逗号和to关键字
+    也可以保留字段名称
+
+*/
+
+// 未知字段
+/*
+未知字段是什么？ 
+MessageLite: 提供序列化和反序列化
+Message: GetDescriptor
+Message: GetReflection
+UnknownType:
+*/
+
+
+// option
+/*
+option optimize_for = SPEED/LITE_RUNTIME/CODE_SIZE;
+
+option allow_alias = true; 允许定义别名;
+
+*/

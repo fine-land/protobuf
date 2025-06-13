@@ -30,6 +30,12 @@ void PrintContact(const contact2::Contact& c) {
                 std::cout << "wc " << p.wc() << endl;
                 break;
         }
+
+        if(p.remark_size() != 0){
+            for(auto it = p.remark().cbegin(); it != p.remark().cend(); it++){
+                std::cout << "key : " << it->first << " value: " << it->second << endl;
+            }
+        }
     }
 }
 

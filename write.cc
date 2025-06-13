@@ -63,10 +63,22 @@ void AddContacts(contact2::PeopleInfo* p){
             }
                       //  std::cin.ignore(100, '\n');
         }
-
+        std::cin.ignore(100, '\n');
+        for(int i = 0; ; i++){
+        std::cout << "remark key: ";
+        std::string key;
+        std::getline(std::cin, key);
+        if(key.empty()){
+            break;
+        }
+        std::cout << "remark value: ";
+        std::string value;
+        std::getline(std::cin, value);
+        p->mutable_remark()->insert({key, value});
+        }
         std::cout << "Finish? :";
         std::string s;
-        std::cin >> s;
+        std::cin >> s;    
         if (s == "OK"){
             return;
         }

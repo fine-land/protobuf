@@ -1,0 +1,10 @@
+syntax = "proto3";
+package s_contact;
+
+	
+message PeopleInfo {
+    reserved 2;
+
+    string name = 1;
+    int32 birthday = 5;
+}
